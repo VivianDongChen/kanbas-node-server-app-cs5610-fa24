@@ -1,5 +1,5 @@
 //setting up a set of RESTful API routes for managing user-related operations
-import * as dao from "./dao.js";
+import * as dao from "./Dao.js";
 import * as courseDao from "../Courses/dao.js";
 import * as enrollmentsDao from "../Enrollments/dao.js";
 

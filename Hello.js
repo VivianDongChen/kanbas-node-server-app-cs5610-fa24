@@ -5,6 +5,6 @@ export default function HelloRoutes(app){
         res.send("Hello World!111111111");
     });
     app.get("/",(req,res) =>{
-        res.send("11111111");
+        res.send("welcome server");
     })
 }

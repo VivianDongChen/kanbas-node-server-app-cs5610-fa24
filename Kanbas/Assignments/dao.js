@@ -8,29 +8,8 @@ export function findAssignmentsForCourse(courseId) {
   return assignmentsOfCourse;
 }
 
-//   export function createCourse(course) {
-//     const newCourse = { ...course, _id: Date.now().toString() };
-//     Database.courses = [...Database.courses, newCourse];
-//     return newCourse;
-//   }
-
-//   export function createAssignment(assignment) {
-//     const newAssignment = { ...assignment, _id: Date.now().toString() };
-//     Database.assignments = [...Database.assignments, newAssignment];
-//     return newAssignment;
-//   }
-
-//   export function deleteCourse(courseId) {
-//     const { courses, enrollments } = Database;
-//     Database.courses = courses.filter((course) => course._id !== courseId);
-//     Database.enrollments = enrollments.filter(
-//       (enrollment) => enrollment.course !== courseId
-//     );
-//   }
-
-//   export function updateCourse(courseId, courseUpdates) {
-//     const { courses } = Database;
-//     const course = courses.find((course) => course._id === courseId);
-//     Object.assign(course, courseUpdates);
-//     return course;
-//   }
+  export function createAssignment(assignment) {
+    const newAssignment = { ...assignment, _id: Date.now().toString() };
+    Database.assignments = [...Database.assignments, newAssignment];
+    return newAssignment;
+  }

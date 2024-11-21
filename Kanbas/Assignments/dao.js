@@ -1,16 +1,5 @@
 import Database from "../Database/index.js";
 
-// export function findCoursesForEnrolledUser(userId) {
-//     const { courses, enrollments } = Database;
-//     const enrolledCourses = courses.filter((course) =>
-//       enrollments.some(
-//         (enrollment) =>
-//           enrollment.user === userId && enrollment.course === course._id
-//       )
-//     );
-//     return enrolledCourses;
-//   }
-
 export function findAssignmentsForCourse(courseId) {
   const { assignments } = Database;
   const assignmentsOfCourse = assignments.filter(
@@ -23,6 +12,12 @@ export function findAssignmentsForCourse(courseId) {
 //     const newCourse = { ...course, _id: Date.now().toString() };
 //     Database.courses = [...Database.courses, newCourse];
 //     return newCourse;
+//   }
+
+//   export function createAssignment(assignment) {
+//     const newAssignment = { ...assignment, _id: Date.now().toString() };
+//     Database.assignments = [...Database.assignments, newAssignment];
+//     return newAssignment;
 //   }
 
 //   export function deleteCourse(courseId) {

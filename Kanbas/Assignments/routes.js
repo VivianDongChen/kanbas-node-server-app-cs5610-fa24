@@ -18,4 +18,18 @@ export default function AssignmentRoutes(app) {
     res.send(newAssignment);
   });
 
+//   app.put("/api/modules/:moduleId", (req, res) => {
+//     const { moduleId } = req.params;
+//     const moduleUpdates = req.body;
+//     modulesDao.updateModule(moduleId, moduleUpdates);
+//     res.sendStatus(204);
+//   });
+
+  app.put("/api/assignments/:assignmentId", (req, res) => {
+    const { assignmentId } = req.params;
+    const assignmentUpdates = req.body;
+    dao.updateAssignment(assignmentId, assignmentUpdates);
+    res.sendStatus(204);
+  });
+
 }

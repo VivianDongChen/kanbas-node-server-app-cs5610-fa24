@@ -71,7 +71,6 @@ export default function UserRoutes(app) {
   app.post("/api/users/profile", profile);
 
   const findCoursesForEnrolledUser = (req, res) => {
-    console.log("Session:", req.session); // 打印会话信息
     let { userId } = req.params;
     if (userId === "current") {
       const currentUser = req.session["currentUser"];

@@ -10,3 +10,7 @@ export function unenrollUserInCourse(userId, courseId) {
   const enrollmentUnenrolled = enrollments.find((enrollment) => enrollment.user === userId && enrollment.course === courseId);
   Database.enrollments = enrollments.filter((enrollment) => enrollment._id !== enrollmentUnenrolled._id);
 }
+
+export function findUserEnrollments(userId) {
+  return Database.enrollments.filter((enrollment) => enrollment.user === userId);
+}

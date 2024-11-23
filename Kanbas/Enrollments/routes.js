@@ -25,6 +25,7 @@ export default function EnrollmentRoutes(app) {
       userId = currentUser._id;
     }
     const userEnrollments = dao.findUserEnrollments(userId);
+    console.log("User Enrollments:", userEnrollments);
     res.json(userEnrollments);
   });
 

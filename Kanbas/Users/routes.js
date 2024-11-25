@@ -1,4 +1,4 @@
-//setting up a set of RESTful API routes for managing user-related operations
+
 import * as dao from "./Dao.js";
 import * as courseDao from "../Courses/dao.js";
 import * as enrollmentsDao from "../Enrollments/dao.js";
@@ -14,6 +14,11 @@ export default function UserRoutes(app) {
 
   const findAllUsers = async (req, res) => {
     const { role, name } = req.query;
+    if(role && name){
+      const users = await dao.findUsersByFilters(role, name);
+      res.json(users);
+      return;
+    }
     if (role) {
       const users = await dao.findUsersByRole(role);
       res.json(users);
@@ -24,11 +29,6 @@ export default function UserRoutes(app) {
       res.json(users);
       return;
       }
-    if(role && name){
-      const users = await dao.findUsersByFilters(role, name);
-      res.json(users);
-      return;
-    }
     const users = await dao.findAllUsers();
     res.json(users);
   };

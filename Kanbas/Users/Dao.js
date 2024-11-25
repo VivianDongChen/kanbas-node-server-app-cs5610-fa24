@@ -5,12 +5,12 @@ export const createUser = (user) => {
   return model.create(user);
 };
 
-export const findAllUsers = () => model.find(); //相当于 select* from users
+export const findAllUsers = () => model.find(); 
 
 export const findUserById = (userId) => model.findById(userId);
 
 export const findUserByUsername = (username) =>
-  model.findOne({ username: username }); //相当于 model. findOne({username})
+  model.findOne({ username: username }); 
 
 export const findUserByCredentials = (username, password) =>
   model.findOne({ username, password });

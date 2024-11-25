@@ -24,6 +24,11 @@ export default function UserRoutes(app) {
       res.json(users);
       return;
       }
+    if(role && name){
+      const users = await dao.findUsersByFilters(role, name);
+      res.json(users);
+      return;
+    }
     const users = await dao.findAllUsers();
     res.json(users);
   };

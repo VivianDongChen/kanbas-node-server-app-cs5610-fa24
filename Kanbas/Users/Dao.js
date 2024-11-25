@@ -31,3 +31,17 @@ export const findUsersByPartialName = (partialName) => {
     $or: [{ firstName: { $regex: regex } }, { lastName: { $regex: regex } }],
   });
 };
+
+export const findUsersByFilters = (role, partialName) => {
+  const filters = {};
+
+  if (role) {
+    filters.role = role;
+  }
+
+  if (partialName) {
+    const regex = new RegExp(partialName, "i"); 
+    filters.$or = [{ firstName: { $regex: regex } }, { lastName: { $regex: regex } }];
+  }
+  return model.find(filters); 
+};

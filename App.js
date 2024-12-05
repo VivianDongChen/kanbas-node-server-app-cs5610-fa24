@@ -52,6 +52,12 @@ if (process.env.NODE_ENV !== "development") {
     domain: process.env.NODE_SERVER_DOMAIN,
   };
 }
+
+mongoose
+  .connect(CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
 app.use(session(sessionOptions));
 
 app.use(express.json());

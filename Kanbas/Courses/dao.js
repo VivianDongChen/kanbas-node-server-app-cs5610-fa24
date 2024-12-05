@@ -1,9 +1,24 @@
 import Database from "../Database/index.js";
 import model from "./model.js";
 
+// Retrieving Courses from a Database
 export function findAllCourses() {
   return model.find();
 }
+
+// Inserting Courses into a Database
+export function createCourse(course) {
+  delete course._id;
+  return model.create(course);
+}
+
+
+
+
+
+
+
+
 
 export function findCoursesForEnrolledUser(userId) {
   const { courses, enrollments } = Database;
@@ -14,12 +29,6 @@ export function findCoursesForEnrolledUser(userId) {
     )
   );
   return enrolledCourses;
-}
-
-export function createCourse(course) {
-  const newCourse = { ...course, _id: Date.now().toString() };
-  Database.courses = [...Database.courses, newCourse];
-  return newCourse;
 }
 
 export function deleteCourse(courseId) {

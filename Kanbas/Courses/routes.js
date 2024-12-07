@@ -23,26 +23,29 @@ export default function CourseRoutes(app) {
     res.send(status);
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  app.put("/api/courses/:courseId", (req, res) => {
+  //update courses in database
+  app.put("/api/courses/:courseId", async (req, res) => {
     const { courseId } = req.params;
     const courseUpdates = req.body;
-    dao.updateCourse(courseId, courseUpdates);
-    res.sendStatus(204);
+    const status = await dao.updateCourse(courseId, courseUpdates);
+    res.send(status);
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   app.get("/api/courses/:courseId/modules", (req, res) => {
     const { courseId } = req.params;

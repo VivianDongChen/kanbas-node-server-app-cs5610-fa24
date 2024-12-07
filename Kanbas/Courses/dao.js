@@ -1,23 +1,25 @@
 import Database from "../Database/index.js";
 import model from "./model.js";
+import mongoose from "mongoose";
 
-// Retrieving Courses from a Database
+// Retrieve Courses from Database
 export function findAllCourses() {
-  return model.find();
+  // return model.find();
+  const courses = model.find();
+  console.log("Fetched courses from database:", courses); // 添加调试日志
+  return courses;
 }
 
-// Inserting Courses into a Database
+// Insert Courses into Database
 export function createCourse(course) {
   delete course._id;
   return model.create(course);
 }
 
-
-
-
-
-
-
+// Delete Courses from Database
+export function deleteCourse(courseId) {
+  return model.deleteOne({ _id: courseId });
+}
 
 
 export function findCoursesForEnrolledUser(userId) {
@@ -31,13 +33,6 @@ export function findCoursesForEnrolledUser(userId) {
   return enrolledCourses;
 }
 
-export function deleteCourse(courseId) {
-  const { courses, enrollments } = Database;
-  Database.courses = courses.filter((course) => course._id !== courseId);
-  Database.enrollments = enrollments.filter(
-    (enrollment) => enrollment.course !== courseId
-  );
-}
 
 export function updateCourse(courseId, courseUpdates) {
   const { courses } = Database;

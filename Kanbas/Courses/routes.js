@@ -1,6 +1,5 @@
 import * as dao from "./dao.js";
 import * as modulesDao from "../Modules/dao.js";
-import mongoose from "mongoose";
 
 export default function CourseRoutes(app) {
   // Retrieve Courses from database

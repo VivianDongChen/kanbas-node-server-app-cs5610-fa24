@@ -6,7 +6,6 @@ export default function CourseRoutes(app) {
   // Retrieve Courses from database
   app.get("/api/courses", async (req, res) => {
     const courses = await dao.findAllCourses();
-    console.log("Courses from database:", courses); // 添加调试日志
     res.send(courses);
   });
 

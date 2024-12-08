@@ -9,7 +9,7 @@ export default function UserRoutes(app) {
     const { username, password } = req.body;
     const currentUser = await dao.findUserByCredentials(username, password);
     if (currentUser) {
-      req.session["currentUser"] = currentUser; // 将用户存储到会话中
+      req.session["currentUser"] = currentUser;
       res.json(currentUser);
       return;
     } else {
@@ -98,22 +98,6 @@ export default function UserRoutes(app) {
   };
   app.post("/api/users/profile", profile);
 
-  // const findCoursesForEnrolledUser = async (req, res) => {
-  //   let { userId } = req.params;
-  //   if (userId === "current") {
-  //     const currentUser = req.session["currentUser"];
-  //     if (!currentUser) {
-  //       res.sendStatus(401);
-  //       return;
-  //     }
-  //     userId = currentUser._id;
-  //   }
-  //   const courses = await courseDao.findCoursesForEnrolledUser(userId);
-  //   res.json(courses);
-  // };
-  // app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
-
-  // Handles requests to retrieve courses for a given user (uid).
   const findCoursesForUser = async (req, res) => {
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
@@ -133,6 +117,14 @@ export default function UserRoutes(app) {
     res.json(courses);
   };
   app.get("/api/users/:uid/courses", findCoursesForUser);
+
+  //retrieve the users for a given course
+  const findUsersForCourse = async (req, res) => {
+    const { cid } = req.params;
+    const users = await enrollmentsDao.findUsersForCourse(cid);
+    res.json(users);
+  };
+  app.get("/api/courses/:cid/People", findUsersForCourse);
 
   //create an enrollment
   const enrollUserInCourse = async (req, res) => {

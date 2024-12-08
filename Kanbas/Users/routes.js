@@ -98,6 +98,7 @@ export default function UserRoutes(app) {
   };
   app.post("/api/users/profile", profile);
 
+  //retrieve all courses that a user is enrolled in
   const findCoursesForUser = async (req, res) => {
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
@@ -118,7 +119,7 @@ export default function UserRoutes(app) {
   };
   app.get("/api/users/:uid/courses", findCoursesForUser);
 
-  //retrieve the users for a given course
+  //retrieve all enrolled users for a given course
   const findUsersForCourse = async (req, res) => {
     const { cid } = req.params;
     const users = await enrollmentsDao.findUsersForCourse(cid);

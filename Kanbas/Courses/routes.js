@@ -2,6 +2,7 @@ import * as dao from "./dao.js";
 import * as modulesDao from "../Modules/dao.js";
 
 export default function CourseRoutes(app) {
+  
   // Retrieve Courses from database
   app.get("/api/courses", async (req, res) => {
     const courses = await dao.findAllCourses();

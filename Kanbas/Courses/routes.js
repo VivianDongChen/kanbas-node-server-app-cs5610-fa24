@@ -31,7 +31,7 @@ export default function CourseRoutes(app) {
     res.send(status);
   });
   
-  // retrieve modules for a course
+  //retrieve modules for a course
   app.get("/api/courses/:courseId/modules", async (req, res) => {
     const { courseId } = req.params;
     const modules = await modulesDao.findModulesForCourse(courseId);

@@ -12,13 +12,14 @@ export function createModule(module) {
   return model.create(module);
 }
 
-
-
-
+//delete modules
 export function deleteModule(moduleId) {
-  const { modules } = Database;
-  Database.modules = modules.filter((module) => module._id !== moduleId);
+  return model.deleteOne({ _id: moduleId });
 }
+
+
+
+
 
 export function updateModule(moduleId, moduleUpdates) {
   const { modules } = Database;

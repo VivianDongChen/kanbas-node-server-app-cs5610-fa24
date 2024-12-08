@@ -12,13 +12,9 @@ export async function findUsersForCourse(courseId) {
 }
 
 export function enrollUserInCourse(userId, courseId) {
-  return model.create({ user, course });
+  return model.create({ user: userId, course: courseId });
 }
 
-export function unenrollUserInCourse(userId, courseId) {
-  return model.deleteOne({ user, course });
+export function unenrollUserFromCourse(userId, courseId) {
+  return model.deleteOne({ user: userId, course: courseId });
 }
-
-// export function findUserEnrollments(userId) {
-//   return Database.enrollments.filter((enrollment) => enrollment.user === userId);
-// }

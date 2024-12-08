@@ -77,21 +77,21 @@ export default function UserRoutes(app) {
       return;
     }
     const currentUser = await dao.createUser(req.body);
-    req.session["currentUser"] = currentUser; //将用户存储到会话中
+    req.session["currentUser"] = currentUser;
     res.json(currentUser);
   };
   app.post("/api/users/signup", signup);
 
   const signout = async (req, res) => {
-    req.session.destroy(); // 销毁当前会话
+    req.session.destroy();
     res.sendStatus(200);
   };
   app.post("/api/users/signout", signout);
 
   const profile = async (req, res) => {
-    const currentUser = req.session["currentUser"]; // 从会话中获取当前用户
+    const currentUser = req.session["currentUser"];
     if (!currentUser) {
-      res.sendStatus(401); // 如果没有用户会话，返回 HTTP 401
+      res.sendStatus(401);
       return;
     }
     res.json(currentUser);
@@ -112,9 +112,6 @@ export default function UserRoutes(app) {
   //   res.json(courses);
   // };
   // app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
-
-
-
 
   // Handles requests to retrieve courses for a given user (uid).
   const findCoursesForUser = async (req, res) => {
@@ -137,8 +134,29 @@ export default function UserRoutes(app) {
   };
   app.get("/api/users/:uid/courses", findCoursesForUser);
 
+  //create an enrollment
+  const enrollUserInCourse = async (req, res) => {
+    let { uid, cid } = req.params;
+    if (uid === "current") {
+      const currentUser = req.session["currentUser"];
+      uid = currentUser._id;
+    }
+    const status = await enrollmentsDao.enrollUserInCourse(uid, cid);
+    res.send(status);
+  };
+  app.post("/api/users/:uid/courses/:cid", enrollUserInCourse);
 
-
+  //removes an enrollment
+  const unenrollUserFromCourse = async (req, res) => {
+    let { uid, cid } = req.params;
+    if (uid === "current") {
+      const currentUser = req.session["currentUser"];
+      uid = currentUser._id;
+    }
+    const status = await enrollmentsDao.unenrollUserFromCourse(uid, cid);
+    res.send(status);
+  };
+  app.delete("/api/users/:uid/courses/:cid", unenrollUserFromCourse);
 
   const createCourse = async (req, res) => {
     const currentUser = req.session["currentUser"];

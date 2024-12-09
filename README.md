@@ -1,10 +1,15 @@
 The Kanbas project is an Online Learning Management System (OLMS) inspired by platforms like Canvas. It integrates front-end, back-end, and database technologies to create a full-stack web application for managing courses, users, assignments, and modules. The system is designed to support dual environments, allowing it to run both locally and on the cloud.
 
 1. Features:
+
 (1) User Authentication and Session Management: Includes secure user sessions managed through Express and MongoDB.
+
 (2) Full CRUD Capabilities: Allows the management of courses, users, assignments, and modules via RESTful APIs.
+
 (3) Responsive Design: Built with Bootstrap for optimized user experience.
+
 (4) Local and Cloud Deployment: Developers can run the application locally for testing or deploy it to the cloud for real-world usage.
+
 (5) Scalable Database Integration: MongoDB Atlas ensures robust performance and scalability for cloud deployments.
 
 2. Technologies Used:

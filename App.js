@@ -20,36 +20,16 @@ const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.
 mongoose.connect(CONNECTION_STRING);
 const app = express();
 
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: (origin, callback) => {
-//       console.log("Request Origin:", origin); // 检查请求来源
-//       if (
-//         !origin ||
-//         origin.includes(".netlify.app") ||
-//         origin === "http://localhost:3001"
-//       ) {
-//         callback(null, true);
-//       } else {
-//         console.error("CORS Error: Not allowed by CORS");
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//   })
-// );
-
 app.use(
   cors({
     credentials: true,
     origin: (origin, callback) => {
-      console.log("Request Origin:", origin);
-      const allowedOrigins = [
-        "http://localhost:3001",
-        "https://kanbas-react-web-app-cs5610-fa24.netlify.app",
-      ];
-      // 如果请求无 origin（如 Postman），也允许
-      if (!origin || allowedOrigins.includes(origin)) {
+      console.log("Request Origin:", origin); // 检查请求来源
+      if (
+        !origin ||
+        origin.includes(".netlify.app") ||
+        origin === "http://localhost:3001"
+      ) {
         callback(null, true);
       } else {
         console.error("CORS Error: Not allowed by CORS");

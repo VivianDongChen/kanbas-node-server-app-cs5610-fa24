@@ -20,24 +20,33 @@ const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.
 mongoose.connect(CONNECTION_STRING);
 const app = express();
 
-app.use(
-  cors({
-    credentials: true,
-    origin: (origin, callback) => {
-      console.log("Request Origin:", origin); // 检查请求来源
-      if (
-        !origin ||
-        origin.includes(".netlify.app") ||
-        origin === "http://localhost:3001"
-      ) {
-        callback(null, true);
-      } else {
-        console.error("CORS Error: Not allowed by CORS");
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-  })
-);
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: (origin, callback) => {
+//       console.log("Request Origin:", origin); // 检查请求来源
+//       if (
+//         !origin ||
+//         origin.includes(".netlify.app") ||
+//         origin === "http://localhost:3001"
+//       ) {
+//         callback(null, true);
+//       } else {
+//         console.error("CORS Error: Not allowed by CORS");
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//   })
+// );
+
+
+const reactUrl = process.env.REACT_URL || 'http://localhost:3001';
+const corsOptions = {
+  origin: reactUrl,
+  methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 
 const sessionOptions = {

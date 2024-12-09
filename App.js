@@ -25,11 +25,21 @@ app.use(
     credentials: true,
     origin: (origin, callback) => {
       console.log("Request Origin:", origin); // 检查请求来源
-      if (
-        !origin ||
-        origin.includes(".netlify.app") ||
-        origin === "http://localhost:3001"
-      ) {
+
+
+      const allowedOrigins = [
+        "http://localhost:3001",
+        "https://kanbas-react-web-app-cs5610-fa24.netlify.app",
+      ];
+      if (!origin || allowedOrigins.includes(origin)) {
+
+
+      // if (
+      //   !origin ||
+      //   origin.includes(".netlify.app") ||
+      //   origin === "http://localhost:3001"
+      // ) {
+      
         callback(null, true);
       } else {
         console.error("CORS Error: Not allowed by CORS");
